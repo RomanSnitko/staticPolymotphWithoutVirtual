@@ -22,10 +22,14 @@ struct C{
 
 using FooVariant = std::variant<A, B, C>;
 
+// template <VariantInterface... Ts>
+// using FooVariant = std::variant<Ts...>;
+
+// using MyVariant = FooVariant<A, B, C>;
+
 // func GetFoo: to unpack obj. and get the type contains.
 // std::visit functionality:
 //		call the callable-obj. with current argument (std::get<index>(variantObject))
-
 template <VariantInterface... Ts>
 constexpr auto GetFoo(const std::variant<Ts...>& v){
 	return std::visit([]<typename T>(const T& obj){
